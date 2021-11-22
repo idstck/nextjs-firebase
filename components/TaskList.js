@@ -1,6 +1,7 @@
 import { collection, onSnapshot, orderBy, query } from "@firebase/firestore"
 import { useEffect, useState } from "react"
 import { db } from "../firebase"
+import Task from "./Task"
 
 const TaskList = () => {
     const [task, setTask] = useState([])
@@ -25,7 +26,11 @@ const TaskList = () => {
         <div>
             {
                 task.map((task) => 
-                    <div key="task.id">{task.title}</div>
+                    <Task
+                        key={task.id}
+                        title={task.title}
+                        detail={task.detail}
+                        timestamp={task.timestamp}/>
                 )
             }
         </div>
