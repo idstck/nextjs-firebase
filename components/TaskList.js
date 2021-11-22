@@ -28,6 +28,7 @@ const TaskList = () => {
                 task.map((task) => 
                     <Task
                         key={task.id}
+                        id={task.id}
                         title={task.title}
                         detail={task.detail}
                         timestamp={task.timestamp}/>
