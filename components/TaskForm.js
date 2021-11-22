@@ -1,18 +1,22 @@
 import { Button, TextField } from "@mui/material"
 import SendIcon from '@mui/icons-material/Send';
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { addDoc, collection, serverTimestamp } from "@firebase/firestore";
 import { db } from "../firebase";
+import { TaskContext } from "../pages/TaskContext";
 
 const TaskForm = () => {
     const [task, setTask] = useState({
         title: '',
         detail: ''
     })
+    
+    const {showAlert} = useContext(TaskContext)
+
     const onSubmit = async () => {
         const collectionRef = collection(db, "tasks")
         const docRef = await addDoc(collectionRef, { ...task, timestamp: serverTimestamp() })
-        alert(`Task with id ${docRef.id} is added successfully`)
+        showAlert('success', `Task with id ${docRef.id} is added successfully`)
         setTask({title: '',detail: ''})
     }
     return (
