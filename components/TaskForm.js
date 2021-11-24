@@ -7,13 +7,8 @@ import { TaskContext } from "../pages/TaskContext";
 
 const TaskForm = () => {
     const inputAreaRef = useRef()
-
-    const [task, setTask] = useState({
-        title: '',
-        detail: ''
-    })
     
-    const {showAlert} = useContext(TaskContext)
+    const {showAlert, task, setTask} = useContext(TaskContext)
 
     const onSubmit = async () => {
         const collectionRef = collection(db, "tasks")

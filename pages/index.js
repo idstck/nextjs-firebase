@@ -5,9 +5,11 @@ import TaskList from "../components/TaskList";
 import { TaskContext } from "./TaskContext";
 
 export default function Home() {
+  const [task, setTask] = useState({ title: '', detail: ''})
   const [open, setOpen] = useState(false)
   const [alertType, setAlertType] = useState("success")
   const [alertMessage, setAlertMessage] = useState("")
+  
 
   const showAlert = (type, msg) => {
     setAlertType(type)
@@ -23,7 +25,7 @@ export default function Home() {
     setOpen(false)
   }
   return (
-    <TaskContext.Provider value={{ showAlert }}>
+    <TaskContext.Provider value={{ showAlert, task, setTask }}>
       <Container maxWidth="sm">
         <TaskForm/>
           <Snackbar

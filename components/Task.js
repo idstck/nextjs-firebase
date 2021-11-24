@@ -8,7 +8,7 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import MorevertIcon from '@mui/icons-material/Morevert'
 
 const Task = ({id, title, detail, timestamp}) => {
-    const { showAlert } = useContext(TaskContext)
+    const { showAlert, setTask } = useContext(TaskContext)
     const deleteTask = async(id, e) => {
         e.stopPropagation();
         const docRef = doc(db, "tasks", id)
@@ -17,6 +17,7 @@ const Task = ({id, title, detail, timestamp}) => {
     }
     return (
         <ListItem
+            onClick={() => setTask({ id, title, detail, timestamp })}
             sx={{ mt: 3, boxShadow: 3}}
             style={{ backgroundColor: '#FAFAFA'}}
             secondaryAction={
