@@ -6,14 +6,20 @@ import { db } from "../firebase";
 import { TaskContext } from "../pages/TaskContext";
 import DeleteIcon from '@mui/icons-material/Delete'
 import MorevertIcon from '@mui/icons-material/Morevert'
+import { useRouter } from "next/router";
 
 const Task = ({id, title, detail, timestamp}) => {
+    const router = useRouter()
     const { showAlert, setTask } = useContext(TaskContext)
     const deleteTask = async(id, e) => {
         e.stopPropagation();
         const docRef = doc(db, "tasks", id)
         await deleteDoc(docRef)
         showAlert('error', `Task with id ${id} deleted successfully`)
+    }
+    const showDetail = (id, e) => {
+        e.stopPropagation()
+        router.push(`/task/${id}`)
     }
     return (
         <ListItem
@@ -26,7 +32,7 @@ const Task = ({id, title, detail, timestamp}) => {
                         <DeleteIcon />
                     </IconButton>
                     <IconButton>
-                        <MorevertIcon />
+                        <MorevertIcon onClick={ e => showDetail(id, e) }/>
                     </IconButton>
                 </>
             }
