@@ -1,6 +1,7 @@
 import { collection, doc, getDoc, getDocs } from "@firebase/firestore"
-import { Grid } from "@mui/material"
+import { Button, Card, CardActions, CardContent, Grid, Typography } from "@mui/material"
 import { db } from "../../firebase"
+import Link from "next/link"
 
 const Detail = ({ taskProps }) => {
     const task = JSON.parse(taskProps)
@@ -12,7 +13,25 @@ const Detail = ({ taskProps }) => {
             alignItems="center"
             justifyContent="center"
             style={{ minHeight: '100vh' }}>
-                { task.title }: { task.detail }
+                <Grid item xs={3}>
+                    <Card
+                        sx={{ minWidth: 275, maxWidth: 500, boxShadow: 3 }}
+                        style={{ backgroundColor: '#fafafa' }}>
+                            <CardContent>
+                                <Typography variant="h5" component="div">
+                                    {task.title}
+                                </Typography>
+                                <Typography sx={{ mb: 1.5 }} colo="text.secondary">
+                                    {task.detail}
+                                </Typography>
+                            </CardContent>
+                            <CardActions>
+                                <Link href="/">
+                                    <Button size="small">Back</Button>
+                                </Link>
+                            </CardActions>
+                    </Card>
+                </Grid>
         </Grid>
     )
 }
