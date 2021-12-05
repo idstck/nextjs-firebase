@@ -5,7 +5,7 @@ import Login from "/components/Login";
 
 const AuthContext = createContext({})
 
-export const AuthProvider = ({ child }) => {
+export const AuthProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState(null);
     const [loading, setLoading] = useState(true);
     useEffect(()  => {
@@ -35,8 +35,8 @@ export const AuthProvider = ({ child }) => {
     }
 
     return (
-        <AuthContext.Provider value={{}}>
-            {child}
+        <AuthContext.Provider value={{ currentUser }}>
+            {children}
         </AuthContext.Provider>
     )
 }
