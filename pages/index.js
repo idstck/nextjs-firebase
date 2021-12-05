@@ -2,6 +2,7 @@ import { Alert, Container, Snackbar } from "@mui/material";
 import { useState } from "react";
 import TaskForm from "../components/TaskForm";
 import TaskList from "../components/TaskList";
+import Loading from "../components/Loading";
 import { TaskContext } from "./TaskContext";
 
 export default function Home() {
@@ -24,6 +25,7 @@ export default function Home() {
 
     setOpen(false)
   }
+  return <Loading type="spin" color="blue" />
   return (
     <TaskContext.Provider value={{ showAlert, task, setTask }}>
       <Container maxWidth="sm">
