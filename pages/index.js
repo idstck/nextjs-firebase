@@ -1,12 +1,15 @@
-import { Alert, Container, Snackbar } from "@mui/material";
+import { Alert, Avatar, Box, Container, IconButton, Snackbar, Typography } from "@mui/material";
 import { useState } from "react";
 import TaskForm from "../components/TaskForm";
 import TaskList from "../components/TaskList";
 import Loading from "../components/Loading";
 import Login from "../components/Login";
 import { TaskContext } from "./TaskContext";
+import { useAuth } from "../auth";
+import { auth } from "../firebase";
 
 export default function Home() {
+  const {currentUser} = useAuth()
   const [task, setTask] = useState({ title: '', detail: ''})
   const [open, setOpen] = useState(false)
   const [alertType, setAlertType] = useState("success")
@@ -31,6 +34,14 @@ export default function Home() {
   return (
     <TaskContext.Provider value={{ showAlert, task, setTask }}>
       <Container maxWidth="sm">
+        <Box sx={{ display: 'flex', justifyContent: 'space-between'}} mt={3}>
+          <IconButton onClick={() => auth.signOut()}>
+            <Avatar src={currentUser.photoURL}/>
+          </IconButton>
+          <Typography variant="h5" mt={1}>
+            {currentUser.displayName}
+          </Typography>
+        </Box>
         <TaskForm/>
           <Snackbar
             open={open}
