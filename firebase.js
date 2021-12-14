@@ -7,12 +7,12 @@ import { getAuth, GoogleAuthProvider } from "firebase/auth"
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAjR8G9OoRgrMLZP-qfhLBWN0tQRx6SQRM",
-  authDomain: "nextjs-firebase-8455d.firebaseapp.com",
-  projectId: "nextjs-firebase-8455d",
-  storageBucket: "nextjs-firebase-8455d.appspot.com",
-  messagingSenderId: "446594790924",
-  appId: "1:446594790924:web:a99538d7b345b87f0d6029"
+  apiKey: "",
+  authDomain: "",
+  projectId: "",
+  storageBucket: "",
+  messagingSenderId: "",
+  appId: ""
 };
 
 // Initialize Firebase
